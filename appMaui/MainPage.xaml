@@ -3,54 +3,82 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="appMaui.MainPage">
 
-    <!-- Definição de estilos no XAML -->
     <ContentPage.Resources>
-        <Style x:Key="Headline"
-                TargetType="Label">
-            <Setter Property="FontSize"
-                    Value="32"/>
-            <Setter Property="FontAttributes"
-                    Value="Bold"/>
-            <Setter Property="TextColor"
-                    Value="#FF277DEE"/>
-            <Setter Property="HorizontalOptions"
-                    Value="Center"/>
+        <Style x:Key="Headline" TargetType="Label">
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="#FF277DEE"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
         </Style>
 
-        <Style x:Key="SubHeadline"
-                TargetType="Label">
-            <Setter Property="FontSize"
-                    Value="24"/>
-            <Setter Property="FontAttributes"
-                    Value="Italic"/>
-            <Setter Property="TextColor"
-                    Value="Gray"/>
-            <Setter Property="HorizontalOptions"
-                    Value="Center"/>
+        <Style x:Key="SubHeadline" TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontAttributes" Value="Italic"/>
+            <Setter Property="TextColor" Value="Gray"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="LightPink"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="WidthRequest" Value="120"/>
         </Style>
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Padding="55,0"
-                Spacing="55">
+        <VerticalStackLayout Padding="40,0" Spacing="30">
+
             <Image Source="hello_kitty.png"
                    HeightRequest="185"
-                   SemanticProperties.Description="."/>
+                   SemanticProperties.Description="Hello Kitty"/>
 
-            <Label Text="Bem Vindo ao App"
+            <Label Text="🎀🐱 Bem-vindo ao App da Hello Kitty! 🎀🐱"
                    Style="{StaticResource Headline}"
                    SemanticProperties.HeadingLevel="Level1"/>
 
-            <Label Text="."
-                   Style="{StaticResource SubHeadline}"
-                   SemanticProperties.HeadingLevel="Level2"
-                   SemanticProperties.Description="."/>
+            <Label x:Name="PerguntaLabel"
+                   Text="Carregando..."
+                   Style="{StaticResource Headline}"
+                   TextColor="HotPink"/>
 
-            <Button x:Name="CounterBtn"
-                    Text="Click me"
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    Clicked="OnCounterClicked"
-                    HorizontalOptions="Fill"/>
+            <HorizontalStackLayout Spacing="20"
+                                   HorizontalOptions="Center">
+                <Button x:Name="SimButton"
+                        Text="Sim 🎉"
+                        Clicked="OnSimClicked"
+                        Style="{StaticResource ButtonStyle}"/>
+
+                <Button x:Name="NaoButton"
+                        Text="Não ❌"
+                        Clicked="OnNaoClicked"
+                        Style="{StaticResource ButtonStyle}"/>
+            </HorizontalStackLayout>
+
+            <Label x:Name="RespostaLabel"
+                   Text=""
+                   Style="{StaticResource SubHeadline}"/>
+
+            
+
+           
+            <Button x:Name="ReiniciarBtn"
+                    Text="Voltar para as perguntas iniciais"
+                    SemanticProperties.Hint="Reinicia as perguntas do app"
+                    Clicked="OnReiniciarClicked"
+                    Style="{StaticResource ButtonStyle}"
+                    IsVisible="False" /> 
+
+           
+            <Button x:Name="PerguntasProgramacaoBtn"
+                    Text="Perguntas sobre Programação"
+                    SemanticProperties.Hint="Acessa perguntas sobre programação"
+                    Clicked="OnNavigateToQuestionsPageClicked"
+                    Style="{StaticResource ButtonStyle}" />
+
+
         </VerticalStackLayout>
     </ScrollView>
 
